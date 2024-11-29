@@ -10,14 +10,19 @@ import {
     Checkbox,
     Button,
     FormControlLabel,
+    Select,
+    MenuItem,
     Container,
     Paper,
+    InputLabel,
+    FormControl,
 } from '@mui/material';
 
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [role, setRole] = useState('User'); // Default role
     const [validation, setValidation] = useState({ name: false, email: false, password: false });
     const navigate = useNavigate();
 
@@ -40,7 +45,7 @@ const Register = () => {
         }
 
         try {
-            const response = await axiosInstance.post('/auth/register', { name, email, password });
+            const response = await axiosInstance.post('/auth/register', { name, email, password, role });
             toast.success('Registration successful');
             setTimeout(() => {
                 navigate('/login');
@@ -122,6 +127,19 @@ const Register = () => {
                         required
                         fullWidth
                     />
+                    <FormControl fullWidth>
+                        {/* <InputLabel id="role-select-label">Role</InputLabel> */}
+                        <Select
+                            labelId="role-select-label"
+                            value={role}
+                            onChange={(e) => setRole(e.target.value)}
+                            required
+                        >
+                            <MenuItem value="User">User</MenuItem>
+                            <MenuItem value="Moderator">Moderator</MenuItem>
+                            <MenuItem value="Admin">Admin</MenuItem>
+                        </Select>
+                    </FormControl>
                     <FormControlLabel
                         control={<Checkbox required />}
                         label={
