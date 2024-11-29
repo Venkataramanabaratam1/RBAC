@@ -10,13 +10,18 @@ const router = express.Router();
 router.post(
   '/register',
   [
-    body('name').notEmpty(),
-    body('email').isEmail(),
-    body('password').isLength({ min: 8 }),
+      body('name').notEmpty().withMessage('Name is required'),
+      body('email').isEmail().withMessage('Invalid email address'),
+      body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters long'),
+      body('role')
+          .notEmpty()
+          .isIn(['User', 'Moderator', 'Admin']) // Ensure role is one of the valid options
+          .withMessage('Role is required and must be User, Moderator, or Admin'),
   ],
   rateLimiter,
   register
 );
+
 
 router.post('/login', rateLimiter, login);
 
