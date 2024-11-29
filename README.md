@@ -15,7 +15,7 @@ This project implements a full-stack application with **role-based authenticatio
 ### Frontend:
 - React
 - Axios
-- React Router DOM
+- @mui/material
 
 ### Backend:
 - Node.js
@@ -35,9 +35,7 @@ This project implements a full-stack application with **role-based authenticatio
 ### Auth Routes:
 - `POST /auth/register`: Register a new user
 - `POST /auth/login`: Authenticate user and return JWT
-
-### Protected Routes:
-- `GET /protected`: Accessible only with valid JWT token
+- `POST /auth/logout`: used to Logout a Authenticated user
 
 
 ## **Role-Based Redirection**
@@ -45,8 +43,4 @@ This project implements a full-stack application with **role-based authenticatio
   - **Admin**: `/admin`
   - **Moderator**: `/moderator`
   - **User**: `/user`
-
-## **How to Test Protected Routes**
-1. Login to get a valid JWT.
-2. Use tools like Postman or Axios to send requests to protected endpoints with the token in the `Authorization` header.
 
