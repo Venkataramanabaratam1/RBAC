@@ -42,9 +42,9 @@ This project implements a full-stack application with **role-based authenticatio
 
 ## **Role-Based Redirection**
 - After login, users are redirected to their respective dashboards based on their roles:
-  - **Admin**: `/dashboard/admin`
-  - **Moderator**: `/dashboard/moderator`
-  - **User**: `/dashboard/user`
+  - **Admin**: `/admin`
+  - **Moderator**: `/moderator`
+  - **User**: `/user`
 
 ## **How to Test Protected Routes**
 1. Login to get a valid JWT.
