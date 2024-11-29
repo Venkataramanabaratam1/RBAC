@@ -66,7 +66,7 @@ const AddRole = () => {
                 <Toolbar>
                     <Typography variant="h6" sx={{ flexGrow: 1 }}>
                         <Link to="/admin" style={{ color: 'inherit', textDecoration: 'none' }}>
-                            User Management
+                            RBAC
                         </Link>
                     </Typography>
                     <Button
