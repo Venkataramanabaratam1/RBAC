@@ -7,18 +7,6 @@ import { connectDB } from './config/db.js';
 import { rateLimiter } from './middleware/rateLimiter.js';
 import authRoutes from './routers/authRoutes.js';
 
-const cors = require("cors");
-
-const corsOptions = {
-    origin: "https://rbac-front-jet.vercel.app", // Your frontend URL
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // If using cookies/auth
-};
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // Enable preflight requests
-
-
 dotenv.config();
 const app = express();
 
@@ -29,24 +17,35 @@ connectDB();
 app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+
+// CORS configuration
+const corsOptions = {
+    origin: process.env.CLIENT_URL || "https://rbac-front-jet.vercel.app", // Frontend URL from environment variable or default
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true // Enable cookies/auth headers
+};
+app.use(cors(corsOptions)); // Apply CORS middleware
+app.options("*", cors(corsOptions)); // Handle preflight requests
 
 // Rate limiter for all routes
 app.use(rateLimiter);
 
+// Routes
 app.use('/api/auth', authRoutes);
 
-app.use('/', (req,res) => {
-  res.json({message:"API IS RUNNING"})
+// Root route
+app.use('/', (req, res) => {
+    res.json({ message: "API is running" });
 });
 
-// Error handling
+// Error handling middleware
 app.use((err, req, res, next) => {
     res.status(err.status || 500).json({ error: err.message || 'Server Error' });
 });
 
-
+// Server setup
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
