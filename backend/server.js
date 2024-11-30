@@ -7,6 +7,18 @@ import { connectDB } from './config/db.js';
 import { rateLimiter } from './middleware/rateLimiter.js';
 import authRoutes from './routers/authRoutes.js';
 
+const cors = require("cors");
+
+const corsOptions = {
+    origin: "https://rbac-front-jet.vercel.app", // Your frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // If using cookies/auth
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Enable preflight requests
+
+
 dotenv.config();
 const app = express();
 
