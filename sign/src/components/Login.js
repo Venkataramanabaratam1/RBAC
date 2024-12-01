@@ -41,7 +41,7 @@ const Login = () => {
         }
     
         try {
-            const response = await axiosInstance.post('/auth/login', { email, password });
+            const response = await axiosInstance.post('/auth/login', { email, password },{withCredentials:true});
     
             toast.success('Login successful');
             const { token, role } = response.data;
