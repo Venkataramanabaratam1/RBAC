@@ -45,7 +45,7 @@ const Register = () => {
         }
 
         try {
-            const response = await axiosInstance.post('/auth/register', { name, email, password, role });
+            const response = await axiosInstance.post('/auth/register', { name, email, password, role },{withCredentials:true});
             toast.success('Registration successful');
             setTimeout(() => {
                 navigate('/login');
