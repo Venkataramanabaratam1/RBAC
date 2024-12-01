@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_BACKENDURL,
+    baseURL:'https://rbac-backend-eight.vercel.app/api',
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
