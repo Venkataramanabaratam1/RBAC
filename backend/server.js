@@ -30,7 +30,7 @@ app.use(helmet());
 
 // CORS configuration
 const corsOptions = {
-    origin: process.env.CLIENT_URL || "https://rbac-front-jet.vercel.app", // Frontend URL from environment variable or default
+    origin: process.env.CLIENT_URL || "https://rbac-front-eight.vercel.app/", // Frontend URL from environment variable or default
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true // Enable cookies/auth headers
