@@ -13,6 +13,16 @@ const app = express();
 // Database connection
 connectDB();
 
+app.use((req, res, next) => {
+    res.set({
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
+    });
+
+    next();
+});
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
