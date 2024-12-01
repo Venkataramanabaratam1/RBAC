@@ -13,15 +13,15 @@ const app = express();
 // Database connection
 connectDB();
 
-app.use((req, res, next) => {
-    res.set({
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "*",
-        "Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
-    });
+// app.use((req, res, next) => {
+//     res.set({
+//         "Access-Control-Allow-Origin": "*",
+//         "Access-Control-Allow-Methods": "*",
+//         "Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
+//     });
 
-    next();
-});
+//     next();
+// });
 
 // Middleware
 app.use(express.json());
@@ -30,7 +30,7 @@ app.use(helmet());
 
 // CORS configuration
 const corsOptions = {
-    origin: process.env.CLIENT_URL || "https://rbac-front-eight.vercel.app/", // Frontend URL from environment variable or default
+    origin: ["http://localhost:3000", "https://rbac-front-eight.vercel.app/"], // Frontend URL from environment variable or default
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true // Enable cookies/auth headers
