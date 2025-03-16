@@ -31,7 +31,7 @@ function App() {
               path="/moderator"
               element={
                 <ProtectedRoute>
-                  {user?.role === 'Moderator' || user?.role === 'Admin' ? (
+                  {user?.role === 'Moderator' || user?.role === 'Admin' ? ( //for different roles
                     <ModeratorDashboard />
                   ) : (
                     <div>Access Denied</div>
